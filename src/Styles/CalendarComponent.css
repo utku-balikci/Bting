@@ -1,0 +1,54 @@
+/* Calendar Component */
+.calendar-component {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Calendar Title */
+.calendar-component h2 {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+/* Calendar Box */
+.react-calendar {
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+/* Selected Day */
+.react-calendar__tile--active {
+  background-color: #007bff !important;
+  color: white !important;
+  border-radius: 8px;
+}
+
+/* Event List */
+.event-list {
+  margin-top: 15px;
+  list-style: none;
+  padding: 0;
+}
+
+/* Event Item */
+.event-item {
+  background: #f0f8ff;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+/* No Events */
+.no-events {
+  color: #7b8a8b;
+  font-style: italic;
+}

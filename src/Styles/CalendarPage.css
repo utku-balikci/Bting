@@ -1,0 +1,83 @@
+/* General container styling */
+.calendar-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f5f7fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Page Title */
+.calendar-container h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Calendar */
+.react-calendar {
+    max-width: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+/* Events Section */
+.event-section {
+    margin-top: 20px;
+    padding: 15px;
+    background: #eef2f7;
+    border-radius: 8px;
+}
+
+/* Event Title */
+.event-section h3 {
+    font-size: 1.4rem;
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+/* Event List */
+.event-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Individual Event */
+.event-item {
+    background: #e3f2fd;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 8px 0;
+    text-align: left;
+}
+
+/* No Events Message */
+.no-events {
+    color: #7b8a8b;
+    font-style: italic;
+}
+
+/* Add Event Button */
+.add-event-button {
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.add-event-button:hover {
+    background-color: #0056b3;
+}
