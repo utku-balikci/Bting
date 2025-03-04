@@ -5,6 +5,16 @@ import SatelliteStatus from "../Components/SatelliteStatus";
 import NotesSection from "../Components/NotesSection";
 import "../Styles/Dashboard.css";
 
+/*const fetchSatellites = async () => {
+  try {
+    const response = await fetch("/api/satellites");
+    const data = await response.json();
+    setSatellites(data); // Update state with latest satellite data
+  } catch (error) {
+    console.error("Error fetching satellites:", error);
+  }
+};*/
+
 const Dashboard = () => {
   const [entries, setEntries] = useState([]);
   const satellites = ["Satellite A", "Satellite B", "Satellite C"];
@@ -32,7 +42,6 @@ const Dashboard = () => {
               <InputForm title="SampleNode 2" onSubmit={handleFormSubmit} />
             </div>
           </div>
-
           <NotesSection />
         </div>
 

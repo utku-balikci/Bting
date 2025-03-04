@@ -6,6 +6,8 @@ import CalendarPage from "./Pages/CalendarPage";
 import SchedulePage from "./Pages/SchedulePage";
 import Dashboard from "./Pages/Dashboard";
 import Navbar from "./Components/NavBar";
+import TermsAndConditions from "./Pages/ConditionsPage"
+import Projects from "./Pages/ProjectsPage";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -25,6 +27,8 @@ const App = () => {
         <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
         <Route path="/calendar" element={<CalendarPage />} />
         <Route path="/schedule" element={<SchedulePage />} />
+        <Route path="/conditions" element={<TermsAndConditions/>}/>
+        <Route path="/projects" element={<Projects />} />
       </Routes>
     </Router>
   );
