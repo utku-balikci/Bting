@@ -1,46 +1,49 @@
-.input-form {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* ---------- FORMS ---------- */
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     width: 100%;
-    max-width: 450px;  /* Prevent stretching */
-    margin: 0 auto;  /* Center the input form */
-}
-
-.form-title {
+    max-width: 500px;
+  }
+  
+  .input-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    width: 100%;
+  }
+  
+  .form-title {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     text-align: center;
-}
-
-.input-field {
-    display: block;
+    margin-bottom: 16px;
+  }
+  
+  .input-field {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
     margin-top: 10px;
-}
-
-.submit-btn {
+  }
+  
+  .submit-btn {
     margin-top: 15px;
-    padding: 10px 16px;
-    background-color: #007bff;
+    padding: 12px;
+    background-color: var(--blue);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    display: block;
-    width: 100%;  /* Make button match input width */
-}
-
-.submit-btn:hover {
-    background-color: #0056b3;
-}
-
-.input-container {
     width: 100%;
-    max-width: 500px; /* Keeps inputs from being too wide */
-    padding: 15px; /* Adds space around inputs */
-}
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: var(--blue-hover);
+  }
+  

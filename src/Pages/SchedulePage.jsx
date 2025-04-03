@@ -14,8 +14,7 @@ const SchedulePage = () => {
       alert("Udfyld alle felter.");
       return;
     }
-
-    // Fix time zone offset before storing
+    
     const eventDate = new Date(date);
     eventDate.setMinutes(eventDate.getMinutes() - eventDate.getTimezoneOffset());
     const storedDate = eventDate.toISOString().split("T")[0];

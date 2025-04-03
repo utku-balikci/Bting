@@ -1,45 +1,58 @@
+/* ---------- LEFT SIDEBAR (Entries) ---------- */
 .sidebar {
-  width: 250px; /* Consistent width */
-  height: 100%; /* Full height */
-  background-color: #1e293b;
-  color: white;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-bg);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  align-self: flex-start;
 }
 
 .sidebar-title {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 .sidebar-entries {
-  margin-top: 15px;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .entry-item {
   background-color: #334155;
-  padding: 10px;
-  border-radius: 6px;
-  margin-top: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 14px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  position: relative;
 }
 
 .entry-item ul {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.entry-item ul li {
+.entry-item li {
   font-size: 0.9rem;
-  padding: 6px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.no-entries {
-  color: #d1d5db;
-  font-size: 0.9rem;
-  text-align: center;
+.entry-item .delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+  background-color: #ef4444;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.entry-item:hover .delete-btn {
+  display: inline-block;
 }

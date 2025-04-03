@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../Styles/InputForm.css";
 
-const InputForm = ({ title, onSubmit }) => {
+const Inputentries = ({ title, onSubmit }) => {
   const [formData, setFormData] = useState({ uptime: "", params: "", version: "" });
 
   const handleChange = (e) => {
@@ -66,4 +66,4 @@ const InputForm = ({ title, onSubmit }) => {
   );
 };
 
-export default InputForm;
+export default Inputentries;
