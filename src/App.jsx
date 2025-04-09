@@ -6,8 +6,9 @@ import CalendarPage from "./Pages/CalendarPage";
 import SchedulePage from "./Pages/SchedulePage";
 import Dashboard from "./Pages/Dashboard";
 import Navbar from "./Components/NavBar";
-import TermsAndConditions from "./Pages/ConditionsPage"
+import TermsAndConditions from "./Pages/ConditionsPage";
 import Projects from "./Pages/ProjectsPage";
+import LogsPage from "./Pages/LogsPage"; // Ensure this page exists
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -15,19 +16,32 @@ const App = () => {
   );
 
   useEffect(() => {
-    localStorage.setItem("isAuthenticated", isAuthenticated);
+    // Only set to localStorage when the authentication status changes
+    if (isAuthenticated !== (localStorage.getItem("isAuthenticated") === "true")) {
+      localStorage.setItem("isAuthenticated", isAuthenticated);
+    }
   }, [isAuthenticated]);
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem("isAuthenticated");
+  };
 
   return (
     <Router>
-      <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+      <Navbar 
+        isAuthenticated={isAuthenticated} 
+        setIsAuthenticated={setIsAuthenticated} 
+        handleLogout={handleLogout} // Fixed the self-closing tag issue
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
         <Route path="/calendar" element={<CalendarPage />} />
         <Route path="/schedule" element={<SchedulePage />} />
-        <Route path="/conditions" element={<TermsAndConditions/>}/>
+        <Route path="/conditions" element={<TermsAndConditions />} />
+        <Route path="/log" element={isAuthenticated ? <LogsPage /> : <Navigate to="/login" />} /> {/* Make sure LogsPage exists */}
         <Route path="/projects" element={<Projects />} />
       </Routes>
     </Router>
