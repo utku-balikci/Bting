@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../firebaseConfig"; 
+import axios from "axios";
 import "../Styles/SchedulePage.css";
 
 const SchedulePage = () => {
@@ -9,31 +11,44 @@ const SchedulePage = () => {
   const [note, setNote] = useState("");
   const navigate = useNavigate();
 
-  const handleAddEvent = () => {
+  // Handler for form submission
+  const handleAddEvent = async () => {
     if (!satelliteName || !date || !time || !note) {
-      alert("Udfyld alle felter.");
+      alert("Please fill in all fields.");
       return;
     }
-    
-    const eventDate = new Date(date);
-    eventDate.setMinutes(eventDate.getMinutes() - eventDate.getTimezoneOffset());
-    const storedDate = eventDate.toISOString().split("T")[0];
 
-    const newEvent = { satelliteName, date: storedDate, time, note };
-    const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
-    storedEvents.push(newEvent);
-    localStorage.setItem("events", JSON.stringify(storedEvents));
+    // Get Firebase user token
+    const token = await auth.currentUser.getIdToken();
 
-    navigate("/calendar"); 
+    const newEvent = { satelliteName, date, time, note };
+
+    try {
+      // Send POST request with Firebase token in the header
+      const response = await axios.post(
+        "http://localhost:3001/api/events",
+        newEvent,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Event added successfully:", response.data);
+      navigate("/calendar"); // Redirect to calendar after event is added
+    } catch (error) {
+      console.error("Failed to add event:", error.message);
+    }
   };
 
   return (
     <div className="schedule-container">
-      <h2>🛰️ Planlæg Satellitbegivenhed</h2>
+      <h2>🛰️ Plan Satellite Event</h2>
       <div className="event-form">
         <input
           type="text"
-          placeholder="Satellit Navn"
+          placeholder="Satellite Name"
           value={satelliteName}
           onChange={(e) => setSatelliteName(e.target.value)}
         />
@@ -48,11 +63,13 @@ const SchedulePage = () => {
           onChange={(e) => setTime(e.target.value)}
         />
         <textarea
-          placeholder="Beskrivelse af begivenheden"
+          placeholder="Event Description"
           value={note}
           onChange={(e) => setNote(e.target.value)}
         />
-        <button onClick={handleAddEvent} className="submit-button">➕ Tilføj Begivenhed</button>
+        <button onClick={handleAddEvent} className="submit-button">
+          ➕ Add Event
+        </button>
       </div>
     </div>
   );

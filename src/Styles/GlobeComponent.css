@@ -1,0 +1,20 @@
+/* Container for the Globe component */
+.globe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0d1b2a; /* Dark background for contrast */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    height: 500px; /* Set a fixed height */
+    width: 80%; /* Set a fixed width, adjust as needed */
+    margin: 20px auto; /* Center the container horizontally */
+  }
+  
+
+  /* Optional: Add hover effect for the container */
+  .globe-container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease-in-out;
+  }

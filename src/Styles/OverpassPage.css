@@ -1,0 +1,95 @@
+/* Container */
+.overpass-page-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #121212;
+    color: white;
+  }
+  
+  /* Header */
+  .overpass-page-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .overpass-page-header h2 {
+    color: #42a5f5;
+  }
+  
+  /* Globe */
+  .globe-container {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  /* Satellite Info */
+  .satellite-status-container {
+    margin-bottom: 30px;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .location-input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .location-input {
+    width: 45%;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #222;
+    color: white;
+    font-size: 14px;
+  }
+  
+  .submit-location-btn {
+    width: 45%;
+    padding: 10px;
+    background-color: #42a5f5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .submit-location-btn:hover {
+    background-color: #1e88e5;
+  }
+  
+  /* Overpass Data */
+  .overpass-data-container {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .overpass-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .overpass-card {
+    background-color: #444;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #555;
+  }
+  
+  .overpass-card h4 {
+    color: #42a5f5;
+  }
+  
+  .overpass-card p {
+    margin: 5px 0;
+  }

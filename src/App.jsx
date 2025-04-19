@@ -8,7 +8,8 @@ import Dashboard from "./Pages/Dashboard";
 import Navbar from "./Components/NavBar";
 import TermsAndConditions from "./Pages/ConditionsPage";
 import Projects from "./Pages/ProjectsPage";
-import LogsPage from "./Pages/LogsPage"; // Ensure this page exists
+import LogsPage from "./Pages/LogsPage"; 
+import OverpassPage from "./Pages/OverpassPage";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -32,7 +33,7 @@ const App = () => {
       <Navbar 
         isAuthenticated={isAuthenticated} 
         setIsAuthenticated={setIsAuthenticated} 
-        handleLogout={handleLogout} // Fixed the self-closing tag issue
+        handleLogout={handleLogout} 
       />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -43,6 +44,7 @@ const App = () => {
         <Route path="/conditions" element={<TermsAndConditions />} />
         <Route path="/log" element={isAuthenticated ? <LogsPage /> : <Navigate to="/login" />} /> {/* Make sure LogsPage exists */}
         <Route path="/projects" element={<Projects />} />
+        <Route path="/overpasses" element={<OverpassPage />} />
       </Routes>
     </Router>
   );

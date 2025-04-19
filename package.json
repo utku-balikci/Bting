@@ -10,14 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.20.6",
     "axios": "^1.8.4",
+    "bootstrap": "^5.3.5",
     "firebase": "^11.2.0",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
+    "react-bootstrap": "^2.10.9",
     "react-calendar": "^5.1.0",
     "react-dom": "^18.3.1",
+    "react-globe": "^2.0.1",
+    "react-globe.gl": "^2.33.2",
     "react-leaflet": "^4.2.1",
-    "react-router-dom": "^7.1.5"
+    "react-router-dom": "^7.1.5",
+    "three": "^0.175.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

@@ -1,6 +1,6 @@
 import "../Styles/Home.css"; 
 import { Link } from "react-router-dom";
-import satelliteImage from "../assets/NASA-Earth-observing-satellite-fleet.en.jpg"; // Ensure correct path
+import satelliteImage from "/NASA-Earth-observing-satellite-fleet.en.jpg"; // Ensure correct path
 
 const Home = () => {
   return (

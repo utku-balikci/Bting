@@ -1,0 +1,98 @@
+/* Styling for event list under the calendar */
+.event-list-container {
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Event Item Styling */
+.event-item {
+  padding: 15px;
+  background-color: #ecf0f1;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #bdc3c7;
+}
+
+.event-item strong {
+  font-size: 1.25rem;
+  color: #34495e;
+  font-weight: bold;
+}
+
+.event-item .event-time {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+.event-item .event-note {
+  font-size: 1rem;
+  color: #2c3e50;
+  margin-top: 10px;
+}
+
+.no-events {
+  font-size: 1rem;
+  color: #95a5a6;
+  text-align: center;
+}
+
+/* Styling for the selected date section */
+.selected-date-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 700px;
+}
+
+.selected-date-box strong {
+  font-size: 1.25rem;
+  color: #3498db;
+  font-weight: bold;
+}
+
+.selected-date-box p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+/* Add Event button */
+.add-event-button {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.add-event-button:hover {
+  background-color: #2980b9;
+}
