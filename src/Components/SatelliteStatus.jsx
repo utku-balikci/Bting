@@ -1,39 +1,34 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../Styles/SatelliteStatus.css";
-import SatelliteMap from "../Components/satelliteMap"; 
+import SatelliteMap from "../Components/satelliteMap";
 
 const SatelliteStatus = () => {
   const [satellites, setSatellites] = useState([]);
   const [selected, setSelected] = useState(null);
 
-  // Fetch satellite data only when the refresh button is clicked or a satellite is selected
+  // Fetch active satellites from backend
   const fetchSatellites = async () => {
     try {
       const res = await axios.get("http://localhost:3001/api/satellites");
-      setSatellites(res.data.filter((s) => s.active)); 
-    } catch (err) {
-      console.error("❌ Failed to fetch satellites:", err.message);
+      setSatellites(res.data.filter((sat) => sat.active));
+    } catch (error) {
+      console.error("❌ Failed to fetch satellites:", error.message);
     }
   };
 
+  // Fetch satellites initially and on interval
   useEffect(() => {
-    fetchSatellites();  // Initial fetch on component mount
-    const interval = setInterval(async () => {
-      await fetchSatellites(); // Periodically fetch satellite data
-    }, 1000);
-    
-    return () => clearInterval(interval); // Clean up interval when the component is unmounted
+    fetchSatellites();
+
+    const interval = setInterval(fetchSatellites, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="satellite-status">
       <h2 className="satellite-title">Active Satellites</h2>
-      <button onClick={fetchSatellites} className="refresh-btn">
-        🔄 Refresh
-      </button>
 
-      {/* List active satellites */}
       <div className="satellite-list">
         {satellites.map((sat) => (
           <button
@@ -46,20 +41,18 @@ const SatelliteStatus = () => {
         ))}
       </div>
 
-      {/* Show selected satellite details */}
       {selected && (
         <div className="satellite-popup">
           <div className="popup-content">
             <h3>📡 {selected.name}</h3>
             <p>🟢 Status: {selected.status}</p>
-            <p> ID: {selected.id}</p>
+            <p>ID: {selected.id}</p>
             <p>Velocity: {selected.velocity} km/h</p>
             <p>Altitude: {selected.altitude} km</p>
             <p>Temperature: {selected.temperature} °C</p>
             <p>🔋 Battery: {selected.battery}%</p>
             <p>📍 Location: {selected.coordinates.lat}, {selected.coordinates.lng}</p>
 
-            {/* Satellite map */}
             <SatelliteMap satellite={selected} />
 
             <button className="close-btn" onClick={() => setSelected(null)}>

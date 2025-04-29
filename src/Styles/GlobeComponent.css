@@ -8,7 +8,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     height: 500px; /* Set a fixed height */
-    width: 80%; /* Set a fixed width, adjust as needed */
+    width: 50%; /* Set a fixed width, adjust as needed */
     margin: 20px auto; /* Center the container horizontally */
   }
   

@@ -17,7 +17,6 @@ const App = () => {
   );
 
   useEffect(() => {
-    // Only set to localStorage when the authentication status changes
     if (isAuthenticated !== (localStorage.getItem("isAuthenticated") === "true")) {
       localStorage.setItem("isAuthenticated", isAuthenticated);
     }
@@ -42,7 +41,7 @@ const App = () => {
         <Route path="/calendar" element={<CalendarPage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/conditions" element={<TermsAndConditions />} />
-        <Route path="/log" element={isAuthenticated ? <LogsPage /> : <Navigate to="/login" />} /> {/* Make sure LogsPage exists */}
+        <Route path="/log" element={isAuthenticated ? <LogsPage /> : <Navigate to="/login" />} /> 
         <Route path="/projects" element={<Projects />} />
         <Route path="/overpasses" element={<OverpassPage />} />
       </Routes>
