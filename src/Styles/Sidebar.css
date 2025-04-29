@@ -1,12 +1,4 @@
 /* ---------- LEFT SIDEBAR (Entries) ---------- */
-.sidebar {
-  background-color: var(--card-bg);
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  width: 100%;
-  align-self: flex-start;
-}
 
 .sidebar-title {
   font-size: 1.3rem;

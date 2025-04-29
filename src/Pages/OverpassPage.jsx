@@ -47,25 +47,21 @@ const OverpassPage = () => {
       alert("Please provide valid latitude and longitude values.");
     }
   };
-
+// not done yet overpass component incoming
   return (
-    <div className="overpass-page-container">
-      <div className="overpass-page-header">
-        <h2>Satellite Overpasses</h2>
+    <div className="overpass-page-main">
+    {/* Globe centered on top */}
+    <div className="globe-top">
+      <GlobeComponent setOverpassData={setOverpassData} />
+    </div>
+  
+    {/* Bottom row with status + overpass side-by-side */}
+    <div className="bottom-panels">
+      <div className="satellite-status-container">
+        <SatelliteStatus satellites={satellites} selected={selectedSatellite} />
       </div>
-
-      <div className="overpass-page-main">
-        {/* Globe Component */}
-        <div className="globe-container">
-          <GlobeComponent setOverpassData={setOverpassData} />
-        </div>
-
-        {/* Satellite Info */}
-        <div className="satellite-status-container">
-          <SatelliteStatus satellites={satellites} selected={selectedSatellite} />
-        </div>
-
-        {/* Location Input */}
+  
+      <div className="right-panel">
         <div className="location-input-container">
           <input
             type="number"
@@ -87,8 +83,7 @@ const OverpassPage = () => {
             Get Overpass Data
           </button>
         </div>
-
-        {/* Display Overpass Data */}
+  
         {overpassData && (
           <div className="overpass-data-container">
             <h3>Overpass Data</h3>
@@ -109,7 +104,7 @@ const OverpassPage = () => {
         )}
       </div>
     </div>
-  );
+  </div>)
 };
 
 export default OverpassPage;

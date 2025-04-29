@@ -1,7 +1,7 @@
 /* ---------- DASHBOARD LAYOUT ---------- */
 .dashboard-layout {
   display: grid;
-  grid-template-columns: 1.5fr 2.6fr 1.5fr;
+  grid-template-columns: 1.7fr 2.6fr 1.7fr;
   gap: 24px;
   align-items: start;
   padding: 30px;
@@ -14,9 +14,34 @@
   background: white;
   color: #111827;
   box-shadow: var(--shadow);
-  padding: 32px ;
+  padding: 32px;
+  padding-left: 48px;  
+  padding-right: 48px; 
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+/* ---------- LEFT COLUMN ---------- */
+.sidebar {
+  background-color: var(--sidebar-bg);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.satellite-status-container {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+/* ---------- RIGHT COLUMN ---------- */

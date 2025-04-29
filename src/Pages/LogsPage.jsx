@@ -5,19 +5,17 @@ import axios from "axios";
 import "../Styles/LogsPage.css"; 
 
 const LogsPage = () => {
-  const [logs, setLogs] = useState('');
+  const [logs, setLogs] = useState([]);            // ✅ must be array
+  const [filteredLogs, setFilteredLogs] = useState([]); // ✅ must be array
+  const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchLogs = async () => {
-      // Listen for changes in the user's authentication state
       const unsubscribe = onAuthStateChanged(auth, async (user) => {
         if (user) {
           try {
-            // Get the token directly from the authenticated user
             const token = await user.getIdToken();
-
-            // Fetch logs from the backend with the token in the header
             const response = await axios.get("http://localhost:3001/api/logs", {
               headers: {
                 "Content-Type": "application/json",
@@ -29,7 +27,13 @@ const LogsPage = () => {
               throw new Error("Failed to fetch logs");
             }
 
-            setLogs(response.data.logs);
+            const backendLogs = response.data.logs;
+            const logsArray = Array.isArray(backendLogs)
+              ? backendLogs
+              : backendLogs.split('\n').filter(line => line.trim() !== ''); // Split string logs to array if needed
+
+            setLogs(logsArray);
+            setFilteredLogs(logsArray);
           } catch (err) {
             setError("Failed to load logs: " + err.message);
           }
@@ -38,21 +42,52 @@ const LogsPage = () => {
         }
       });
 
-      // Cleanup function
       return () => unsubscribe();
     };
 
     fetchLogs();
   }, []);
 
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredLogs(logs);
+    } else {
+      const lowerSearch = searchQuery.toLowerCase();
+      const filtered = logs.filter(log => log.toLowerCase().includes(lowerSearch));
+      setFilteredLogs(filtered);
+    }
+  }, [searchQuery, logs]);
+
   if (error) {
-    return <div>{error}</div>;
+    return <div className="error">{error}</div>;
   }
 
   return (
-    <div className="logs-page">
-      <h2>Logs</h2>
-      <pre className="logs-content">{logs}</pre>
+    <div className="logs-page-container">
+      <div className="logs-header">
+        <h2>System Logs</h2>
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search logs..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+
+      <div className="logs-container">
+        {filteredLogs.length === 0 ? (
+          <div className="no-logs">No logs found.</div>
+        ) : (
+          <ul className="logs-list">
+            {filteredLogs.map((log, index) => (
+              <li key={index} className="log-entry">
+                {log}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
