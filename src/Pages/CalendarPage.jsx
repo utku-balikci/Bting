@@ -10,11 +10,11 @@ const CalendarPage = () => {
   const [events, setEvents] = useState([]);
   const navigate = useNavigate();
 
-  // Fetch token and events when the page loads or when the date changes
+  
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        // Fetch the token
+    
         const token = await auth.currentUser.getIdToken();
 
         // Format date to YYYY-MM-DD

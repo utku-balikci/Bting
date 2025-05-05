@@ -1,133 +1,121 @@
 /* Container for the calendar and event list */
 .calendar-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
-  }
-  
-  /* Title of the page */
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  /* Event List Container */
-  .event-list-container {
-    width: 100%;
-    max-width: 700px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-  }
-  
-  h3 {
-    font-size: 1.5rem;
-    color: #2c3e50;
-    font-weight: 600;
-    margin-bottom: 15px;
-  }
-  
-  /* Style for the date and event info */
-  .selected-date-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 700px;
-  }
-  
-  .selected-date-box strong {
-    font-size: 1.25rem;
-    color: #3498db;
-    font-weight: bold;
-  }
-  
-  .event-list {
-    display: flex;
-    flex-direction: column;
-    margin-top: 15px;
-  }
-  
-  .event-item {
-    padding: 12px;
-    background-color: #ecf0f1;
-    margin-bottom: 10px;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #bdc3c7;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
 
-  .event-title {
-    font-weight: ;
-    font-size: 1.2em;
-    color: #333;  /* Dark color for better contrast */
-  }
-  
-  
-  .event-item strong {
-    font-size: 1rem;
-    color: #34495e;
-    font-weight: bold;
-  }
-  
-  .event-item p {
-    font-size: 0.9rem;
-    color: #7f8c8d;
-    margin-top: 5px;
-  }
-  
-  .no-events {
-    font-size: 1rem;
-    color: #95a5a6;
-    text-align: center;
-  }
-  
-  /* Add Event button */
-  .add-event-button {
-    background-color: #3498db;
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .add-event-button:hover {
-    background-color: #2980b9;
-  }
-  
-  /* Event Box for the Selected Date */
-  .selected-date-box {
-    background-color: #ecf0f1;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-  }
-  
-  .selected-date-box span {
-    color: #2c3e50;
-    font-size: 1.2rem;
-    font-weight: 600;
-  }
-  
-  .selected-date-box p {
-    font-size: 1rem;
-    color: #7f8c8d;
-    font-weight: 500;
-    margin-top: 10px;
-  }
+/* Title of the page */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Event List Container */
+.event-list-container {
+  width: 100%;
+  max-width: 700px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Style for the date and event info */
+.selected-date-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ecf0f1;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+}
+
+.selected-date-box strong {
+  font-size: 1.25rem;
+  color: #3498db;
+  font-weight: bold;
+}
+
+.selected-date-box span {
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.selected-date-box p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.event-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.event-item {
+  padding: 12px;
+  background-color: #ecf0f1;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #bdc3c7;
+  color: #34495e; /* Force default text color for children */
+}
+
+.event-item strong {
+  font-size: 1rem;
+  color: #34495e;
+  font-weight: bold;
+}
+
+.event-item p {
+  font-size: 0.95rem;
+  color: #34495e !important; /* Force override white */
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.no-events {
+  font-size: 1rem;
+  color: #95a5a6;
+  text-align: center;
+}
+
+/* Add Event button */
+.add-event-button {
+  background-color: #3498db;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.add-event-button:hover {
+  background-color: #2980b9;
+}

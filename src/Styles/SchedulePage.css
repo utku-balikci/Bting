@@ -1,7 +1,7 @@
 /* General container styling */
 .schedule-container {
     max-width: 600px;
-    margin: auto;
+    margin: 20px auto; /* Added margin-top */
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 12px;

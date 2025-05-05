@@ -18,7 +18,7 @@ const SchedulePage = () => {
       return;
     }
 
-    // Get Firebase user token
+
     const token = await auth.currentUser.getIdToken();
 
     const newEvent = { satelliteName, date, time, note };
