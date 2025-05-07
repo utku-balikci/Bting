@@ -4,44 +4,39 @@ import {
   googleProvider, 
   signInWithPopup, 
   signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword 
+  createUserWithEmailAndPassword, 
+  sendPasswordResetEmail 
 } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Login.css";
 
 const Login = ({ setIsAuthenticated }) => {
-  const [email, setEmail] = useState(localStorage.getItem("savedEmail") || ""); // Load email from localStorage
+  const [email, setEmail] = useState(localStorage.getItem("savedEmail") || "");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isSignup, setIsSignup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [loginAttempts, setLoginAttempts] = useState(0);
+  const [showResetPrompt, setShowResetPrompt] = useState(false);
   const navigate = useNavigate();
 
-  // Save email to localStorage when it changes
   useEffect(() => {
-    if (email) {
-      localStorage.setItem("savedEmail", email);
-    }
+    if (email) localStorage.setItem("savedEmail", email);
   }, [email]);
 
-  // Google Login
   const handleGoogleLogin = async () => {
     try {
-      googleProvider.setCustomParameters({
-        prompt: "select_account",
-      });
-
+      googleProvider.setCustomParameters({ prompt: "select_account" });
       const result = await signInWithPopup(auth, googleProvider);
       setIsAuthenticated(true);
-      localStorage.setItem("savedEmail", result.user.email); // Save Google account email
-      navigate("/"); 
+      localStorage.setItem("savedEmail", result.user.email);
+      navigate("/");
     } catch (error) {
       setErrorMessage("Google Login failed. Please try again.");
       console.error("Google Login failed:", error.message);
     }
   };
 
-  // Email Login
   const handleEmailLogin = async () => {
     if (!email || !password) {
       setErrorMessage("Please enter both email and password.");
@@ -53,12 +48,17 @@ const Login = ({ setIsAuthenticated }) => {
       setIsAuthenticated(true);
       navigate("/");
     } catch (error) {
+      setLoginAttempts(prev => prev + 1);
       setErrorMessage("Invalid email or password. Try again.");
+
+      if (loginAttempts + 1 >= 3) {
+        setShowResetPrompt(true);
+      }
+
       console.error("Email Login failed:", error.message);
     }
   };
 
-  // Signup with Email
   const handleSignup = async () => {
     if (!email || !password || !confirmPassword) {
       setErrorMessage("Please fill in all fields.");
@@ -77,6 +77,21 @@ const Login = ({ setIsAuthenticated }) => {
     } catch (error) {
       setErrorMessage("Signup failed. Try again.");
       console.error("Signup failed:", error.message);
+    }
+  };
+
+  const handlePasswordReset = async () => {
+    if (!email) {
+      setErrorMessage("Enter your email to reset password.");
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert("A password reset email has been sent to your inbox.");
+    } catch (error) {
+      setErrorMessage("Failed to send reset email.");
+      console.error("Reset failed:", error.message);
     }
   };
 
@@ -118,7 +133,20 @@ const Login = ({ setIsAuthenticated }) => {
             Sign in with Email
           </button>
         )}
+
+        {!isSignup && (
+          <p className="forgot-password" onClick={handlePasswordReset}>
+            Forgot Password?
+          </p>
+        )}
       </div>
+
+      {showResetPrompt && (
+        <div className="reset-popup">
+          <p>Too many failed attempts. Would you like to reset your password?</p>
+          <button onClick={handlePasswordReset}>Send Reset Email</button>
+        </div>
+      )}
 
       <button onClick={handleGoogleLogin} className="google-button">
         Sign in with Google

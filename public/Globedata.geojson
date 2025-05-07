@@ -1,0 +1,35 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Copenhagen"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [12.5683, 55.6761]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Berlin"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [13.4050, 52.5200]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "London"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-0.1276, 51.5074]
+        }
+      }
+    ]
+  }

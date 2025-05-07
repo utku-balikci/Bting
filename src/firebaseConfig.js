@@ -5,7 +5,8 @@ import {
   signInWithEmailAndPassword, 
   signInWithPopup, 
   signOut, 
-  createUserWithEmailAndPassword 
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -27,5 +28,6 @@ export {
   signInWithEmailAndPassword, 
   signInWithPopup, 
   signOut, 
-  createUserWithEmailAndPassword  
+  createUserWithEmailAndPassword  ,
+  sendPasswordResetEmail
 };
