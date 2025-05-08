@@ -7,6 +7,15 @@ const GlobeComponent = ({ setOverpassData }) => {
   const [satellites, setSatellites] = useState([]);
   const [arcData, setArcData] = useState([]);
   const [labels, setLabels] = useState([]);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  // Update time every second
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Fetch satellite data every second
   useEffect(() => {
@@ -63,7 +72,7 @@ const GlobeComponent = ({ setOverpassData }) => {
   };
 
   return (
-    <div className="globe-container" style={{ height: '500px' }}>
+    <div className="globe-container" style={{ position: 'relative', width: '100%', height: '500px' }}>
       <Globe
         ref={globeRef}
         globeImageUrl="/earth-night.png"
@@ -71,7 +80,7 @@ const GlobeComponent = ({ setOverpassData }) => {
         arcColor={() => 'rgba(255, 0, 0, 0.7)'}
         arcStroke={0.4}
         arcAltitude={0.5}
-        width="100%"
+        width={window.innerWidth}
         height={500}
         atmosphereColor="#0000FF"
         atmosphereAltitude={0.4}
@@ -97,6 +106,18 @@ const GlobeComponent = ({ setOverpassData }) => {
           size: 0.4,
         }))}
       />
+
+      {/* Globe Clock Display */}
+      <div style={{
+        position: 'absolute',
+        bottom: 10,
+        left: 12,
+        color: 'lightblue',
+        fontFamily: 'monospace',
+        fontSize: '14px'
+      }}>
+        {currentTime.toLocaleString()}
+      </div>
     </div>
   );
 };

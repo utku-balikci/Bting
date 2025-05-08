@@ -1,0 +1,63 @@
+
+  .city-selector {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    background: #2c2c40;
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .city-selector:focus {
+    outline: none;
+    border-color: #4a90e2;
+  }
+  
+  .overpass-details {
+    background: #2a2a3f;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .recommendations-box.large {
+    background: #23233a;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  
+  .recommendations-box h4 {
+    margin-bottom: 10px;
+    color: #81a9f1;
+    font-weight: 600;
+  }
+  
+  .recommendations-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .recommendations-box li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    background: #2e2e45;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .recommendations-box li:hover {
+    background: #3a3a5a;
+  }
+  
+  .countdown {
+    font-size: 0.9rem;
+    color: #bbb;
+  }
