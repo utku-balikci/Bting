@@ -11,65 +11,58 @@ const GlobeComponent = ({ setOverpassData }) => {
 
   // Update time every second
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
+    const interval = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(interval);
   }, []);
 
   // Fetch satellite data every second
   useEffect(() => {
-    const interval = setInterval(() => {
-      axios
-        .get('http://localhost:3001/api/satellites')
-        .then((response) => {
-          setSatellites(response.data);
-          const arcs = response.data.map((sat) => ({
-            startLat: 0,
-            startLng: -140,
-            endLat: sat.coordinates.lat,
-            endLng: sat.coordinates.lng,
-          }));
-          setArcData(arcs);
-        })
-        .catch((error) => console.error('Error fetching satellites:', error));
-    }, 1000);
+    const fetchSatellites = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/api/satellites');
+        const satellitesData = response.data;
+
+        setSatellites(satellitesData);
+
+        const arcs = satellitesData.map((sat) => ({
+          startLat: 0,
+          startLng: -140,
+          endLat: sat.coordinates.lat,
+          endLng: sat.coordinates.lng,
+        }));
+        setArcData(arcs);
+      } catch (error) {
+        console.error('Error fetching satellites:', error);
+      }
+    };
+
+    const interval = setInterval(fetchSatellites, 1000);
     return () => clearInterval(interval);
   }, []);
 
-  // Fetch capital city labels only
+  // Fetch capital city labels
   useEffect(() => {
     const loadCapitalLabels = async () => {
       try {
-        const res = await fetch('/capitals.geojson');
-        const data = await res.json();
+        const response = await fetch('/capitals.geojson');
+        const data = await response.json();
 
-        const capitalLabels = data.features.map((f) => ({
-          lat: f.geometry.coordinates[1],
-          lng: f.geometry.coordinates[0],
-          text: f.properties.city ?? f.id,
+        const capitalLabels = data.features.map((feature) => ({
+          lat: feature.geometry.coordinates[1],
+          lng: feature.geometry.coordinates[0],
+          text: feature.properties.city ?? feature.id,
           size: 0.5,
           color: 'rgba(218, 220, 240, 0.85)',
         }));
 
-        setLabels(capitalLabels.slice(0, 200)); // limit if necessary
-      } catch (err) {
-        console.error('Error loading capital label data:', err);
+        setLabels(capitalLabels.slice(0, 200)); // Limit to 200 labels if necessary
+      } catch (error) {
+        console.error('Error loading capital label data:', error);
       }
     };
 
     loadCapitalLabels();
   }, []);
-
-  const handleGlobeClick = ({ lat, lng }) => {
-    console.log(`User clicked on latitude: ${lat}, longitude: ${lng}`);
-    axios
-      .get('http://localhost:3001/api/overpasses', { params: { lat, lng } })
-      .then((response) => {
-        setOverpassData(response.data);
-      })
-      .catch((error) => console.error('Error fetching overpasses:', error));
-  };
 
   return (
     <div className="globe-container" style={{ position: 'relative', width: '100%', height: '500px' }}>
@@ -85,7 +78,6 @@ const GlobeComponent = ({ setOverpassData }) => {
         atmosphereColor="#0000FF"
         atmosphereAltitude={0.4}
         backgroundColor="#101820"
-        onGlobeClick={handleGlobeClick}
         labelsData={labels}
         labelLat="lat"
         labelLng="lng"
@@ -93,11 +85,6 @@ const GlobeComponent = ({ setOverpassData }) => {
         labelColor="color"
         labelSize="size"
         labelDotRadius={0.15}
-        pointLat="lat"
-        pointLng="lng"
-        pointColor="color"
-        pointRadius="size"
-        pointLabel={(sat) => sat.name}
         pointsData={satellites.map((sat) => ({
           ...sat,
           lat: sat.coordinates.lat,
@@ -105,17 +92,24 @@ const GlobeComponent = ({ setOverpassData }) => {
           color: 'blue',
           size: 0.4,
         }))}
+        pointLat="lat"
+        pointLng="lng"
+        pointColor="color"
+        pointRadius="size"
+        pointLabel={(sat) => sat.name}
       />
 
       {/* Globe Clock Display */}
-      <div style={{
-        position: 'absolute',
-        bottom: 10,
-        left: 12,
-        color: 'lightblue',
-        fontFamily: 'monospace',
-        fontSize: '14px'
-      }}>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 10,
+          left: 12,
+          color: 'lightblue',
+          fontFamily: 'monospace',
+          fontSize: '14px',
+        }}
+      >
         {currentTime.toLocaleString()}
       </div>
     </div>
